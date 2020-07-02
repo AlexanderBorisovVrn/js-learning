@@ -2,13 +2,13 @@
 
 let startBtn = document.getElementById('start');
 let bugetValue = document.getElementsByClassName('budget-value')[0];
-let dayBugetValue = document.getElementsByClassName('daybudget-value')[0];
-let levelValue = document.getElementsByClassName('level-value')[0];
-let expensesValue = document.getElementsByClassName('expenses-value')[0];
-let optionalExpensesValue = document.getElementsByClassName('optionalexpenses-value')[0];
-let incomeValue = document.getElementsByClassName('income-value')[0];
-let monthsavingsValue = document.getElementsByClassName('monthsavings-value');
-let yearSavingsValue = document.getElementsByClassName('yearsavings-value');
+let dayBugetValue = document.getElementsByClassName('daybudget-value');
+let levelValue = document.getElementsByClassName('level-value');
+let expensesValue = document.getElementsByClassName('expenses-value');
+let optionalExpensesValue = document.getElementsByClassName('optionalexpenses-value');
+let incomeValue = document.getElementsByClassName('income-value');
+let monthSavingsValue = document.getElementsByClassName('monthsavings-value')[0];
+let yearSavingsValue = document.getElementsByClassName('yearsavings-value')[0];
 let expensesItem = document.getElementsByClassName('expenses-item');
 let btn = document.getElementsByTagName('button');
 
@@ -17,8 +17,8 @@ let optionalExpensesBtn = btn[1];
 let countBugetBtn = btn[2];
 let optionalExpensesItem = document.querySelectorAll('.optionalexpenses-item');
 let chooseIncome = document.querySelector('.choose-income');
-let checkSavings = document.querySelector('.checksavings');
-let chooseSum = document.querySelector('.choose-sum');
+let checkSavings = document.querySelector('#savings');
+let chooseSum = document.querySelector('#sum');
 let percent = document.querySelector('.choose-percent');
 let year = document.querySelector('.year-value');
 let month = document.querySelector('.month-value');
@@ -91,7 +91,39 @@ chooseIncome.addEventListener('input', function () {
   appData.income = item.split(',');
   incomeValue.textContent = appData.income;
 
-})
+});
+
+checkSavings.addEventListener('click', function () {
+  if (appData.savings == true) {
+    appData.savings = false;
+  } else {
+    appData.savings = true;
+  }
+});
+
+
+chooseSum.addEventListener('input', function () {
+  if (appData.savings == true) {
+    let summa = +chooseSum.value;
+    let perc = +percent.value;
+    appData.monthIncome = summa / 100 / 12 * perc;
+    appData.yearIncome = summa / 100 * perc;
+    monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+    yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
+  }
+
+});
+
+percent.addEventListener('input', function () {
+  if (appData.savings == true) {
+    let summa = +chooseSum.value;
+    let perc = +percent.value;
+    appData.monthIncome = summa / 100 / 12 * perc;
+    appData.yearIncome = summa / 100 * perc;
+    monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+    yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
+  }
+});
 
 let appData = {
   budget: money,
@@ -99,30 +131,21 @@ let appData = {
   expenses: {},
   optionalExpenses: {},
   income: [],
-  savings: true,
-
-
-  checkSavings: function () {
-    if (appData.savigs == true) {
-      let save = +prompt("Какова сумма ваших накоплений", ""),
-        percent = +prompt("Под какой процент", "");
-      appData.monthIncome = save / 100 / 12 * percent;
-      alert("Доход в месяц с вашего депозита: " + appData.monthIncome);
-    }
-  },
-
-
-
-  chooseIncome: function () {
-    
-    appData.income.push(prompt("Может что-то еще?", ""));
-    appData.income.sort();
-    while ((typeof (item)) != 'string' || item == "" || item == null) {
-      item = prompt("Что принесет дополнительный доход (Перечислите через запятую)", "");
-    }
-    appData.income.forEach(function (itemvalue, i) {
-      alert("Способы доп.заработка: " + (i + 1) + itemvalue);
-    });
-
-  }
+  savings: false,
 };
+
+
+
+//   chooseIncome: function () {
+
+//     appData.income.push(prompt("Может что-то еще?", ""));
+//     appData.income.sort();
+//     while ((typeof (item)) != 'string' || item == "" || item == null) {
+//       item = prompt("Что принесет дополнительный доход (Перечислите через запятую)", "");
+//     }
+//     appData.income.forEach(function (itemvalue, i) {
+//       alert("Способы доп.заработка: " + (i + 1) + itemvalue);
+//     });
+
+//   }
+// };
