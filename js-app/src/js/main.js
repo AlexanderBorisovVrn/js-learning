@@ -2,11 +2,11 @@
 
 let startBtn = document.getElementById('start');
 let bugetValue = document.getElementsByClassName('budget-value')[0];
-let dayBugetValue = document.getElementsByClassName('daybudget-value');
-let levelValue = document.getElementsByClassName('level-value');
-let expensesValue = document.getElementsByClassName('expenses-value');
-let optionalExpensesValue = document.getElementsByClassName('optionalexpenses-value');
-let incomeValue = document.getElementsByClassName('income-value');
+let dayBugetValue = document.getElementsByClassName('daybudget-value')[0];
+let levelValue = document.getElementsByClassName('level-value')[0];
+let expensesValue = document.getElementsByClassName('expenses-value')[0];
+let optionalExpensesValue = document.getElementsByClassName('optionalexpenses-value')[0];
+let incomeValue = document.getElementsByClassName('income-value')[0];
 let monthSavingsValue = document.getElementsByClassName('monthsavings-value')[0];
 let yearSavingsValue = document.getElementsByClassName('yearsavings-value')[0];
 let expensesItem = document.getElementsByClassName('expenses-item');
@@ -135,17 +135,3 @@ let appData = {
 };
 
 
-
-//   chooseIncome: function () {
-
-//     appData.income.push(prompt("Может что-то еще?", ""));
-//     appData.income.sort();
-//     while ((typeof (item)) != 'string' || item == "" || item == null) {
-//       item = prompt("Что принесет дополнительный доход (Перечислите через запятую)", "");
-//     }
-//     appData.income.forEach(function (itemvalue, i) {
-//       alert("Способы доп.заработка: " + (i + 1) + itemvalue);
-//     });
-
-//   }
-// };
